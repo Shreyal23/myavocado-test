@@ -1217,7 +1217,56 @@
 
       .walkthrough,
       .options-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .walk-card {
+        padding: 20px 16px 16px;
+        border-radius: 18px;
+      }
+
+      .walk-card h3 {
+        font-size: 1rem;
+      }
+
+      .walk-card p {
+        font-size: 0.84rem;
+        line-height: 1.45;
+      }
+
+      .choice-card {
+        min-height: 0;
+        padding: 14px 12px 12px;
+        border-radius: 18px;
+      }
+
+      .choice-tile {
+        gap: 8px;
+      }
+
+      .choice-card h4 {
+        font-size: 0.92rem;
+      }
+
+      .choice-card p {
+        font-size: 0.78rem;
+      }
+
+      .price-row {
+        gap: 8px;
+        margin-top: 12px;
+      }
+
+      .qty-switch {
+        gap: 2px;
+        padding: 3px;
+      }
+
+      .mini-btn {
+        min-width: 0;
+        padding: 7px 5px;
+        font-size: 0.72rem;
       }
 
       .builder-wrap,
@@ -1324,6 +1373,15 @@
       .item-price {
         grid-column: auto;
       }
+
+    }
+
+    @media (max-width: 340px) {
+      .walkthrough,
+      .options-grid {
+        grid-template-columns: 1fr;
+      }
+
     }
   </style>
 </head>
@@ -1558,7 +1616,7 @@
     ];
 
     const quantities = [10, 20, 30];
-    const liquidQuantities = [50, 100, 150, 200];
+    const liquidQuantities = [50, 100, 150];
 
     const screenMap = {
       home: document.getElementById('homeScreen'),
