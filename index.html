@@ -26,23 +26,65 @@
       --purple: #b08cff;
       --shadow: 0 20px 45px rgba(7, 5, 16, 0.42);
       --radius: 26px;
+      --surface: rgba(18, 12, 28, 0.7);
+      --surface-strong: rgba(16, 12, 26, 0.56);
+      --surface-soft: rgba(255, 255, 255, 0.04);
+      --surface-card: rgba(255, 255, 255, 0.03);
+      --surface-border: rgba(255, 255, 255, 0.08);
+      --preview-background: linear-gradient(180deg, rgba(12, 13, 28, 0.95), rgba(42, 25, 48, 0.92));
+      --page-background: radial-gradient(circle at top, rgba(255, 124, 207, 0.18), transparent 22%),
+                         radial-gradient(circle at bottom right, rgba(126, 242, 255, 0.18), transparent 18%),
+                         linear-gradient(135deg, var(--bg-1), var(--bg-2));
+    }
+
+    body.light-theme,
+    html.light-theme {
+      --bg-1: #fff8f3;
+      --bg-2: #ffffff;
+      --text: #281b2d;
+      --muted: #6e6272;
+      --shadow: 0 20px 45px rgba(87, 54, 74, 0.16);
+      --surface: rgba(255, 255, 255, 0.78);
+      --surface-strong: rgba(255, 255, 255, 0.82);
+      --surface-soft: rgba(255, 255, 255, 0.62);
+      --surface-card: rgba(255, 255, 255, 0.62);
+      --surface-border: rgba(68, 40, 68, 0.12);
+      --preview-background: linear-gradient(180deg, rgba(255, 247, 252, 0.96), rgba(255, 238, 247, 0.92));
+      --page-background: radial-gradient(circle at top, rgba(255, 124, 207, 0.16), transparent 25%),
+                         radial-gradient(circle at bottom right, rgba(126, 242, 255, 0.16), transparent 22%),
+                         linear-gradient(135deg, var(--bg-1), var(--bg-2));
     }
 
     * { box-sizing: border-box; }
 
     html, body {
       margin: 0;
-      min-height: 100%;
+      min-height: 100vh;
       font-family: 'Inter', sans-serif;
-      background: radial-gradient(circle at top, rgba(255, 124, 207, 0.18), transparent 22%),
-                  radial-gradient(circle at bottom right, rgba(126, 242, 255, 0.18), transparent 18%),
-                  linear-gradient(135deg, var(--bg-1), var(--bg-2));
+      background: var(--page-background);
       color: var(--text);
       scroll-behavior: smooth;
     }
 
+    html {
+      background: var(--page-background);
+    }
+
     body {
       overflow-x: hidden;
+    }
+
+    body.light-theme .choice-card.active {
+      background: rgba(255, 171, 107, 0.14);
+    }
+
+    body.light-theme .badge,
+    body.light-theme .step-status,
+    body.light-theme .counter,
+    body.light-theme .qty-switch,
+    body.light-theme .chip {
+      background: rgba(68, 40, 68, 0.06);
+      border-color: rgba(68, 40, 68, 0.12);
     }
 
     body::before,
@@ -94,8 +136,8 @@
       justify-content: space-between;
       align-items: center;
       padding: 18px 24px;
-      border: 1px solid rgba(255,255,255,0.08);
-      background: rgba(16, 12, 26, 0.56);
+      border: 1px solid var(--surface-border);
+      background: var(--surface-strong);
       backdrop-filter: blur(16px);
       border-radius: 24px;
       box-shadow: var(--shadow);
@@ -164,8 +206,8 @@
     .ghost-btn, .secondary-btn {
       padding: 12px 18px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--surface-soft);
+      border: 1px solid var(--surface-border);
       color: var(--text);
     }
 
@@ -507,12 +549,19 @@
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 26px;
-      background: rgba(18, 12, 28, 0.7);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
       border-radius: 32px;
       box-shadow: var(--shadow);
       overflow: hidden;
       backdrop-filter: blur(18px);
+    }
+
+    .builder-main,
+    .builder-aside,
+    .cart-list,
+    .cart-side {
+      min-width: 0;
     }
 
     .builder-main {
@@ -537,8 +586,8 @@
       display: inline-flex;
       align-items: center;
       gap: 12px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--surface-soft);
+      border: 1px solid var(--surface-border);
       border-radius: 999px;
       padding: 10px 16px;
       color: var(--muted);
@@ -606,8 +655,8 @@
 
     .choice-card {
       position: relative;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
       border-radius: 22px;
       padding: 18px 16px 14px;
       transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
@@ -690,8 +739,8 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--surface-soft);
+      border: 1px solid var(--surface-border);
       border-radius: 999px;
       padding: 4px;
     }
@@ -719,7 +768,7 @@
     .builder-aside {
       padding: 24px 20px 20px;
       background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02));
-      border-left: 1px solid rgba(255,255,255,0.08);
+      border-left: 1px solid var(--surface-border);
     }
 
     .preview-header {
@@ -740,8 +789,8 @@
       position: relative;
       height: 420px;
       border-radius: 28px;
-      background: linear-gradient(180deg, rgba(12,13,28,0.95), rgba(42,25,48,0.92));
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--preview-background);
+      border: 1px solid var(--surface-border);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -922,8 +971,8 @@
     }
 
     .cart-wrap {
-      background: rgba(18,12,28,0.7);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--surface);
+      border: 1px solid var(--surface-border);
       border-radius: 30px;
       overflow: hidden;
       box-shadow: var(--shadow);
@@ -935,7 +984,7 @@
       align-items: center;
       gap: 16px;
       padding: 24px 28px;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      border-bottom: 1px solid var(--surface-border);
     }
 
     .cart-head h2 {
@@ -962,8 +1011,8 @@
       grid-template-columns: 92px 1fr auto;
       gap: 18px;
       align-items: center;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
       border-radius: 22px;
       padding: 18px 16px;
     }
@@ -1011,14 +1060,14 @@
 
     .cart-side {
       background: rgba(255,255,255,0.02);
-      border-left: 1px solid rgba(255,255,255,0.08);
+      border-left: 1px solid var(--surface-border);
       padding: 24px 22px 28px;
     }
 
     .totals {
       padding: 18px 18px 20px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--surface-card);
+      border: 1px solid var(--surface-border);
       border-radius: 22px;
     }
 
@@ -1089,33 +1138,100 @@
         border-left: none;
         border-top: 1px solid rgba(255,255,255,0.08);
       }
+
+      .preview-box {
+        height: min(420px, 72vw);
+        min-height: 320px;
+      }
     }
 
     @media (max-width: 640px) {
       .app-shell {
-        width: min(100% - 16px, 1280px);
+        width: calc(100% - 16px);
+        margin: 8px auto;
       }
 
       .topbar {
         padding: 14px 16px;
+        position: relative;
+        top: 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 14px;
       }
 
       .brand {
         font-size: 1.2rem;
+        justify-content: center;
       }
 
       .top-actions {
         gap: 8px;
+        width: 100%;
+        flex-wrap: wrap;
       }
 
       .ghost-btn, .primary-btn, .secondary-btn {
         padding: 10px 14px;
         font-size: 0.9rem;
+        flex: 1 1 calc(50% - 8px);
+        min-width: 0;
+        white-space: nowrap;
       }
+
+      .hero {
+        min-height: 0;
+        padding: 34px 4px 10px;
+      }
+
+      h1 {
+        font-size: clamp(2.7rem, 13vw, 4rem);
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero-visual {
+        min-height: 370px;
+      }
+
+      .smoothie-showcase {
+        width: min(100%, 360px);
+        height: 360px;
+      }
+
+      .smoothie-glass {
+        width: 190px;
+        height: 245px;
+      }
+
+      .floating-card {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+      }
+
+      .floating-card.one { left: 2%; }
+      .floating-card.two { right: 0; }
+      .floating-card.three { left: 4%; }
 
       .walkthrough,
       .options-grid {
         grid-template-columns: 1fr;
+      }
+
+      .builder-wrap,
+      .cart-screen {
+        padding-top: 18px;
+      }
+
+      .builder-main,
+      .builder-aside {
+        padding: 18px 16px 22px;
+      }
+
+      .builder-header h2 {
+        font-size: 2rem;
       }
 
       .builder-header,
@@ -1126,8 +1242,87 @@
         align-items: flex-start;
       }
 
+      .builder-actions,
+      .cart-head .top-actions {
+        width: 100%;
+      }
+
+      .builder-actions .step-btn,
+      .cart-head .top-actions > * {
+        width: 100%;
+      }
+
+      .price-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .qty-switch {
+        max-width: 100%;
+        flex-wrap: wrap;
+      }
+
+      .preview-box {
+        height: 330px;
+        min-height: 0;
+      }
+
+      .cup {
+        width: 180px;
+        height: 220px;
+      }
+
+      .cart-head {
+        padding: 18px 16px;
+      }
+
+      .cart-list,
+      .cart-side {
+        padding: 18px 16px 22px;
+      }
+
+      .cart-side {
+        border-left: none;
+        border-top: 1px solid var(--surface-border);
+      }
+
+      .cart-item {
+        grid-template-columns: 72px minmax(0, 1fr);
+        gap: 12px;
+        padding: 14px;
+      }
+
+      .item-visual {
+        width: 72px;
+        height: 72px;
+      }
+
+      .item-price {
+        grid-column: 2;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .top-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .top-actions > * {
+        width: 100%;
+      }
+
+      .summary-line {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
       .cart-item {
         grid-template-columns: 1fr;
+      }
+
+      .item-price {
+        grid-column: auto;
       }
     }
   </style>
@@ -1142,6 +1337,7 @@
       <div class="top-actions">
         <button class="ghost-btn" data-nav="home">Home</button>
         <button class="ghost-btn" data-nav="builder">Build</button>
+        <button class="ghost-btn" id="themeToggle" type="button" aria-pressed="false">☀ Light</button>
         <button class="primary-btn" data-nav="cart">Cart <span id="cart-count">0</span></button>
       </div>
     </header>
@@ -1433,8 +1629,8 @@
 
       const nextBtn = document.getElementById('nextStepBtn');
       const backBtn = document.getElementById('backStepBtn');
-      backBtn.disabled = state.currentStep === 0;
-      backBtn.style.opacity = state.currentStep === 0 ? '0.45' : '1';
+      backBtn.disabled = false;
+      backBtn.style.opacity = '1';
 
       if (state.currentStep === 3) {
         nextBtn.textContent = 'Add to cart';
@@ -1444,6 +1640,11 @@
     }
 
     function moveStep(direction) {
+      if (direction < 0 && state.currentStep === 0) {
+        setScreen('home');
+        return;
+      }
+
       const nextStep = state.currentStep + direction;
       if (nextStep < 0 || nextStep > 3) return;
 
@@ -1787,6 +1988,28 @@
       const confirmed = window.confirm('Clear all smoothies from the cart?');
       if (confirmed) clearCart();
     });
+
+    const themeToggle = document.getElementById('themeToggle');
+
+    function updateThemeToggle() {
+      const isLightTheme = document.body.classList.contains('light-theme');
+      themeToggle.textContent = isLightTheme ? '☾ Dark' : '☀ Light';
+      themeToggle.setAttribute('aria-pressed', String(isLightTheme));
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isLightTheme = document.body.classList.toggle('light-theme');
+      document.documentElement.classList.toggle('light-theme', isLightTheme);
+      localStorage.setItem('smoothieStudioTheme', isLightTheme ? 'light' : 'dark');
+      updateThemeToggle();
+    });
+
+    if (localStorage.getItem('smoothieStudioTheme') === 'light') {
+      document.body.classList.add('light-theme');
+      document.documentElement.classList.add('light-theme');
+    }
+
+    updateThemeToggle();
 
     function init() {
       renderFruitOptions();
